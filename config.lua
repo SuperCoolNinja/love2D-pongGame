@@ -1,11 +1,15 @@
 local Config = 
 {
     hasWindowFocus = true,
+    isPaused = true,
 
     Paddle = {
         width = 15,
         height = 100,
-        speedVel = 2.5
+        speedVel = 470.0,
+        padding = 10.0,
+        topLimit = 0,
+        bottomLimit = 0
     },
     
     Player = {
@@ -16,6 +20,13 @@ local Config =
     IA = {
         posX = 0,
         posY = 0
+    },
+
+    Ball = {
+       posX = 0,
+       posY = 0,
+       speedVel = 0,
+       radius = 7
     },
 
     Window = {

@@ -30,13 +30,26 @@ function love.load()
 
     -- Setup Player : 
     Config.Player.posY = Config.Window.height/2 - Config.Paddle.height/2
+
+    -- Setup Paddle limit zone : 
+    Config.Paddle.topLimit = Config.Paddle.padding;
+    Config.Paddle.bottomLimit = Config.Window.height - Config.Paddle.height - Config.Paddle.padding;
+
+    -- Setup Ball : 
+    Config.Ball.posX = Config.Window.width / 2 - Config.Ball.radius/2
+    Config.Ball.posY = Config.Window.height / 2 - Config.Ball.radius / 2
 end
 
 
 
 -- This is call every frame to render thing on screen : 
 function love.draw()
+    -- Player : 
     love.graphics.rectangle("fill", Config.Player.posX, Config.Player.posY, Config.Paddle.width, Config.Paddle.height);
+    
+    -- Ball
+    love.graphics.circle("fill", Config.Ball.posX, Config.Ball.posY, Config.Ball.radius)
+    
     love.graphics.print("Score 0", Config.Window.width / 2 - love.graphics.getFont():getWidth("Score 0") / 2, 100)
 end
 
@@ -50,7 +63,7 @@ function love.update(dt)
     Config.hasWindowFocus = love.window.hasFocus();
 
     -- Control the input logic action : 
-    Control.inputLogic()
+    Control.inputLogic(dt)
 end
 
 
