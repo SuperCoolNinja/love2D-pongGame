@@ -1,5 +1,6 @@
 local Config = 
 {
+    currentLanguage = "en", --> change here your language
     hasWindowFocus = true,
     isPaused = true,
 
@@ -30,9 +31,9 @@ local Config =
     },
 
     Window = {
-        width = 0,
-        height = 0,
         title = "Pong Game by SuperCoolNinja.",
+        width = nil,
+        height = nil,
     },
     
     GameScreen = {
@@ -41,7 +42,12 @@ local Config =
             r = 100 / 255,
             g = 149 / 255,
             b = 237 / 255
-        }
+        },
+        bgColorPaused = { 
+            r = 0 / 255,
+            g = 0 / 255,
+            b = 0 / 255
+        },
     }
 }
 return Config;

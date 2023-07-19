@@ -2,6 +2,8 @@
 
 local Config = require "config"
 local Control = require "control"
+local Game = require "game"
+
 
 
 
@@ -21,7 +23,6 @@ function love.load()
     
     -- Game default settings : 
     love.graphics.setNewFont(Config.GameScreen.fontSize)
-    love.graphics.setBackgroundColor(Config.GameScreen.bgColor.r, Config.GameScreen.bgColor.g, Config.GameScreen.bgColor.b)
     love.window.setTitle(Config.Window.title)
 
     -- Get game size : 
@@ -47,10 +48,14 @@ function love.draw()
     -- Player : 
     love.graphics.rectangle("fill", Config.Player.posX, Config.Player.posY, Config.Paddle.width, Config.Paddle.height);
     
-    -- Ball
+    -- Ball :
     love.graphics.circle("fill", Config.Ball.posX, Config.Ball.posY, Config.Ball.radius)
     
-    love.graphics.print("Score 0", Config.Window.width / 2 - love.graphics.getFont():getWidth("Score 0") / 2, 100)
+    -- Score :
+    Game.showUI()
+
+    -- Draw Menu : 
+    Game.drawMenu()
 end
 
 
