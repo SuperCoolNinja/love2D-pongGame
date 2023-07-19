@@ -39,20 +39,26 @@ function love.load()
     -- Setup Ball : 
     Config.Ball.posX = Config.Window.width / 2 - Config.Ball.radius/2
     Config.Ball.posY = Config.Window.height / 2 - Config.Ball.radius / 2
+
+    -- Setup Limit Zone UI : 
+    Config.LimitZoneUI.posX = Config.Window.width / 2 - Config.LimitZoneUI.width /2 
+    Config.LimitZoneUI.posY = 0
+    Config.LimitZoneUI.height = Config.Window.height
 end
 
 
 
 -- This is call every frame to render thing on screen : 
 function love.draw()
+
+    -- Score :
+    Game.showUI()
+
     -- Player : 
     love.graphics.rectangle("fill", Config.Player.posX, Config.Player.posY, Config.Paddle.width, Config.Paddle.height);
     
     -- Ball :
     love.graphics.circle("fill", Config.Ball.posX, Config.Ball.posY, Config.Ball.radius)
-    
-    -- Score :
-    Game.showUI()
 
     -- Draw Menu : 
     Game.drawMenu()

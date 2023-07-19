@@ -23,6 +23,11 @@ Menu = {
     isVisible = false,
     selectedItem = 1,
 
+    bgRect = {r  = 1, g =  1, b =  1, a = 0.2},
+    itemColor = {r  = 1, g = 1, b = 1},
+    notHoverColor ={r = 105 / 255, g = 105 / 255,b = 105 / 255},
+
+
     options = {
         {
             label = Translations.resume,

@@ -1,6 +1,5 @@
 local Translations = {
-    score = "Score",
-    play = "Press Spacebar to start",
+    play = "spacebar to start",
     resume = "Resume",
     reset = "Restart"
 }

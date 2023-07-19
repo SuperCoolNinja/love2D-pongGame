@@ -1,7 +1,6 @@
 local Translations = 
 {
-    score = "Score",
-    play = "Appuyez sur la barre d'espace pour commencer",
+    play = "espace pour jouer",
     resume = "Reprendre",
     reset = "Rejouer"
 }

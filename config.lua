@@ -1,6 +1,6 @@
 local Config = 
 {
-    currentLanguage = "en", --> change here your language
+    currentLanguage = "fr", --> change here your language
     hasWindowFocus = true,
     isPaused = true,
 
@@ -16,11 +16,13 @@ local Config =
     Player = {
         posX = 15,
         posY = 0,
+        score = 0,
     },
     
     IA = {
         posX = 0,
-        posY = 0
+        posY = 0,
+        score = 0,
     },
 
     Ball = {
@@ -35,19 +37,23 @@ local Config =
         width = nil,
         height = nil,
     },
+
+    LimitZoneUI = {
+        posX = 0,
+        posY = 0,
+        width = 5,
+        height  = 10
+    },
     
     GameScreen = {
         fontSize = 30, 
+
         bgColor = { 
-            r = 100 / 255,
-            g = 149 / 255,
-            b = 237 / 255
-        },
-        bgColorPaused = { 
             r = 0 / 255,
             g = 0 / 255,
             b = 0 / 255
         },
+        padding = 20
     }
 }
 return Config;
