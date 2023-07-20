@@ -60,6 +60,9 @@ function love.draw()
     -- Player : 
     love.graphics.rectangle("fill", Config.Player.posX, Config.Player.posY, Config.Paddle.width, Config.Paddle.height);
     
+    -- IA : 
+    love.graphics.rectangle("fill", Config.IA.posX, Config.IA.posY, Config.Paddle.width, Config.Paddle.height);
+
     -- Ball :
     love.graphics.circle("fill", Config.Ball.posX, Config.Ball.posY, Config.Ball.radius)
 
@@ -91,6 +94,9 @@ function love.update(dt)
         
         -- Update the velocity of the ball :
         Ball.move(dt)
+
+        -- Update the IA : 
+        Paddle.move(dt)
     end
 end
 

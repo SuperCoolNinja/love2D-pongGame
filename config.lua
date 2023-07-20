@@ -7,7 +7,7 @@ local Config =
     Paddle = {
         width = 15,
         height = 100,
-        speedVel = 470.0,
+        speedVel = 350.0,
         padding = 10.0,
         topLimit = 0,
         bottomLimit = 0
@@ -30,7 +30,7 @@ local Config =
        posY = 0,
        dirX= 0,
        dirY = 0,
-       speedVel = 200,
+       speedVel = 400,
        radius = 7
     },
 
