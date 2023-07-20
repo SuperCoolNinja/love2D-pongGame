@@ -2,10 +2,10 @@
 
 local Config = require "config"
 local Control = require "control"
+local Ball = require 'ball'
 local Game = require "game"
 local Paddle = require "paddle"
-local Ball = require 'ball'
-local Menu = require('gui')
+local Menu = require 'gui'
 
 
 
@@ -31,6 +31,10 @@ function love.load()
 
     -- Setup Player : 
     Paddle.defaultPos()
+
+    -- Setup Score :
+    Config.Player.score = 0
+    Config.IA.score = 0
 
     -- Setup Paddle limit zone : 
     Config.Paddle.topLimit = Config.Paddle.padding;
@@ -60,7 +64,7 @@ function love.draw()
     love.graphics.circle("fill", Config.Ball.posX, Config.Ball.posY, Config.Ball.radius)
 
     -- Draw Menu : 
-    Game.drawMenu()
+    Menu.draw()
 end
 
 

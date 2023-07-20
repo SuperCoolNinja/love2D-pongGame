@@ -1,4 +1,6 @@
 local Config = require('config')
+local Paddle = require('paddle')
+
 
 local Ball = {}
 
@@ -33,12 +35,20 @@ function Ball.move(dt)
     Config.Ball.posY = Config.Ball.posY + Config.Ball.speedVel * Config.Ball.dirY * dt
 
     -- Check for collisions with the window borders and randomize the direction if needed
-    if Config.Ball.posX < 0 or Config.Ball.posX > Config.Window.width - Config.Ball.radius then
-        Config.Ball.dirX = -Config.Ball.dirX
-    end
-
     if Config.Ball.posY < 0 or Config.Ball.posY > Config.Window.height - Config.Ball.radius then
         Config.Ball.dirY = -Config.Ball.dirY
+    end
+
+    if Config.Ball.posX < 0 then 
+        Config.IA.score = Config.IA.score + 1
+        Ball.defaultPos()
+        Paddle.defaultPos()
+        Config.isPaused = true
+    elseif Config.Ball.posX > Config.Window.width - Config.Ball.radius then 
+        Config.Player.score = Config.Player.score + 1
+        Ball.defaultPos()
+        Paddle.defaultPos()
+        Config.isPaused = true
     end
 end
 
