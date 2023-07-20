@@ -38,20 +38,20 @@ function love.keypressed(key, scancode, isrepeat)
     end
 end
 
-local Control = {
-    inputLogic = function(dt)
-        if not Config.isPaused then
-            if (isKeyDown("up") or isKeyDown("z") or isKeyDown("w")) and Paddle.isNotTouchTopLimit(Config.Player.posY) then
-                Config.Player.posY = Config.Player.posY - Config.Paddle.speedVel * dt
-            elseif (isKeyDown("down") or isKeyDown("s")) and Paddle.isNotTouchBottomLimit(Config.Player.posY) then
-                Config.Player.posY = Config.Player.posY + Config.Paddle.speedVel * dt
-            end
-        else
-            if isKeyDown("space") then
-                Config.isPaused = not Config.isPaused
-                Ball.generateRandomPos()
-            end
+local Control = {}
+function Control.inputLogic(dt)
+    if not Config.isPaused then
+        if (isKeyDown("up") or isKeyDown("z") or isKeyDown("w")) and Paddle.isNotTouchTopLimit(Config.Player.posY) then
+            Config.Player.posY = Config.Player.posY - Config.Paddle.speedVel * dt
+        elseif (isKeyDown("down") or isKeyDown("s")) and Paddle.isNotTouchBottomLimit(Config.Player.posY) then
+            Config.Player.posY = Config.Player.posY + Config.Paddle.speedVel * dt
+        end
+    else
+        if isKeyDown("space") then
+            Config.isPaused = not Config.isPaused
+            Ball.generateRandomPos()
         end
     end
-}
+end
+
 return Control;

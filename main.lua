@@ -82,6 +82,9 @@ function love.update(dt)
     end
 
     if not Config.isPaused and not Menu.isVisible then
+        -- Check for collision : 
+        Paddle.onCollisionEnter()
+        
         -- Update the velocity of the ball :
         Ball.move(dt)
     end
