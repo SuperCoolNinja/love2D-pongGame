@@ -3,15 +3,7 @@ local Translations = require('locales/' .. Config.currentLanguage)
 local Menu = require('gui')
 
 local Game = {
-    isPlayerNotTouchTopLimit = function()
-        return Config.Player.posY > Config.Paddle.topLimit
-    end,
-
-    isPlayerNotTouchBottomLimit = function()
-        return Config.Player.posY <= Config.Paddle.bottomLimit
-    end,
-
-    showUI = function() 
+    showUI = function()
 
         -- Limit Zone UI  :
         love.graphics.setColor(1, 1, 1, 0.2)

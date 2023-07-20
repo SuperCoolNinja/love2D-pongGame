@@ -3,9 +3,9 @@
 local Config = require "config"
 local Control = require "control"
 local Game = require "game"
-
-
-
+local Paddle = require "paddle"
+local Ball = require 'ball'
+local Menu = require('gui')
 
 
 
@@ -30,15 +30,14 @@ function love.load()
     Config.Window.height = love.graphics.getHeight()
 
     -- Setup Player : 
-    Config.Player.posY = Config.Window.height/2 - Config.Paddle.height/2
+    Paddle.defaultPos()
 
     -- Setup Paddle limit zone : 
     Config.Paddle.topLimit = Config.Paddle.padding;
     Config.Paddle.bottomLimit = Config.Window.height - Config.Paddle.height - Config.Paddle.padding;
 
     -- Setup Ball : 
-    Config.Ball.posX = Config.Window.width / 2 - Config.Ball.radius/2
-    Config.Ball.posY = Config.Window.height / 2 - Config.Ball.radius / 2
+    Ball.defaultPos()
 
     -- Setup Limit Zone UI : 
     Config.LimitZoneUI.posX = Config.Window.width / 2 - Config.LimitZoneUI.width /2 
@@ -75,6 +74,17 @@ function love.update(dt)
 
     -- Control the input logic action : 
     Control.inputLogic(dt)
+
+    -- Check if the window lost focus then we show the pause menu :
+    if not Config.hasWindowFocus then
+        Config.isPaused = true
+        Menu.isVisible = true
+    end
+
+    if not Config.isPaused and not Menu.isVisible then
+        -- Update the velocity of the ball :
+        Ball.move(dt)
+    end
 end
 
 

@@ -1,6 +1,6 @@
 local Config = 
 {
-    currentLanguage = "fr", --> change here your language
+    currentLanguage = "en", --> change here your language
     hasWindowFocus = true,
     isPaused = true,
 
@@ -28,7 +28,9 @@ local Config =
     Ball = {
        posX = 0,
        posY = 0,
-       speedVel = 0,
+       dirX= 0,
+       dirY = 0,
+       speedVel = 200,
        radius = 7
     },
 

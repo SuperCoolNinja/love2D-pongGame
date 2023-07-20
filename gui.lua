@@ -1,6 +1,8 @@
 
 local Config = require('config')
 local Translations = require('locales/' .. Config.currentLanguage)
+local Ball = require('ball')
+local Paddle = require('paddle')
 
 local Menu = nil
 
@@ -11,6 +13,9 @@ end
 
 local function onReset()
     Config.isPaused = true
+    Menu.isVisible = false
+    Ball.defaultPos()
+    Paddle.defaultPos()
 end
 
 Menu = {

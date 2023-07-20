@@ -1,6 +1,9 @@
 local Config = require('config')
-local Game = require('game')
+local Paddle = require('paddle')
 local Menu = require('gui')
+local Ball = require('ball')
+
+
 
 local function isKeyDown (key) 
     return love.keyboard.isDown(key);
@@ -36,20 +39,19 @@ function love.keypressed(key, scancode, isrepeat)
 end
 
 local Control = {
-        inputLogic = function(dt)
-            if not Config.isPaused then
-                if (isKeyDown("up") or isKeyDown("z") or isKeyDown("w")) and Game.isPlayerNotTouchTopLimit() then
-                    Config.Player.posY = Config.Player.posY - Config.Paddle.speedVel * dt
-                elseif (isKeyDown("down") or isKeyDown("s")) and Game.isPlayerNotTouchBottomLimit() then
-                    Config.Player.posY = Config.Player.posY + Config.Paddle.speedVel * dt
-                end
-            else
-                if isKeyDown("space") then
-                    Config.isPaused = not Config.isPaused
-                end
+    inputLogic = function(dt)
+        if not Config.isPaused then
+            if (isKeyDown("up") or isKeyDown("z") or isKeyDown("w")) and Paddle.isNotTouchTopLimit(Config.Player.posY) then
+                Config.Player.posY = Config.Player.posY - Config.Paddle.speedVel * dt
+            elseif (isKeyDown("down") or isKeyDown("s")) and Paddle.isNotTouchBottomLimit(Config.Player.posY) then
+                Config.Player.posY = Config.Player.posY + Config.Paddle.speedVel * dt
+            end
+        else
+            if isKeyDown("space") then
+                Config.isPaused = not Config.isPaused
+                Ball.generateRandomPos()
             end
         end
-    }
-    
-    return Control;
-    
+    end
+}
+return Control;
