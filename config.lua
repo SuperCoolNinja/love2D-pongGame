@@ -30,14 +30,14 @@ local Config =
        posY = 0,
        dirX= 0,
        dirY = 0,
-       speedVel = 400,
+       speedVel = 350,
        radius = 7
     },
 
     Window = {
         title = "Pong Game by SuperCoolNinja.",
-        width = nil,
-        height = nil,
+        width = 800,
+        height = 600,
     },
 
     LimitZoneUI = {

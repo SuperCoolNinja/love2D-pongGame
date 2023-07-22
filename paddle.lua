@@ -26,24 +26,21 @@ function Paddle.onCollisionEnter()
     if Config.Ball.posX <= Config.Player.posX + Config.Paddle.width then 
         local paddleHeight = Config.Player.posY + Config.Paddle.height
 
-        -- Check if the ball touches the top of the player's paddle : 
+        -- Check if the ball touches the player's paddle : 
         if ballHeight > Config.Player.posY and Config.Ball.posY < paddleHeight then
             Config.Ball.dirX = -Config.Ball.dirX
+            Config.Ball.dirY = math.random() * 2 - 1 -- Random value between -1 and 1
         end
     end
 
     -- Check IA CollisionEnter : 
-    if Config.Ball.posX > Config.IA.posX then 
+    if Config.Ball.posX + Config.Ball.radius >= Config.IA.posX then 
         local paddleHeight = Config.IA.posY + Config.Paddle.height
+
         if ballHeight > Config.IA.posY and Config.Ball.posY < paddleHeight then
             Config.Ball.dirX = -Config.Ball.dirX
+            Config.Ball.dirY = math.random() * 2 - 1 -- Random value between -1 and 1
         end
-    end
-
-    -- If ball collides with the paddles, generate a random Y direction for the ball
-    if Config.Ball.posX <= Config.Player.posX + Config.Paddle.width or Config.Ball.posX > Config.IA.posX then
-        local randomYDir = love.math.random(-100, 100) / 100 -- Random value between -1 and 1
-        Config.Ball.dirY = randomYDir
     end
 end
 

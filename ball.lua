@@ -31,25 +31,41 @@ function Ball.defaultPos()
 end
 
 function Ball.move(dt)
-    Config.Ball.posX = Config.Ball.posX + Config.Ball.speedVel * Config.Ball.dirX * dt
-    Config.Ball.posY = Config.Ball.posY + Config.Ball.speedVel * Config.Ball.dirY * dt
+    -- Calculate the velocity for the current frame
+    local velocityX = Config.Ball.speedVel * Config.Ball.dirX * dt
+    local velocityY = Config.Ball.speedVel * Config.Ball.dirY * dt
+
+    -- Move the ball
+    Config.Ball.posX = Config.Ball.posX + velocityX
+    Config.Ball.posY = Config.Ball.posY + velocityY
 
     -- Check for collisions with the window borders and randomize the direction if needed
     if Config.Ball.posY < 0 or Config.Ball.posY > Config.Window.height - Config.Ball.radius then
         Config.Ball.dirY = -Config.Ball.dirY
     end
 
-    if Config.Ball.posX < 0 then 
-        Config.IA.score = Config.IA.score + 1
-        Ball.defaultPos()
-        Paddle.defaultPos()
-        Config.isPaused = true
-    elseif Config.Ball.posX > Config.Window.width - Config.Ball.radius then 
-        Config.Player.score = Config.Player.score + 1
-        Ball.defaultPos()
-        Paddle.defaultPos()
-        Config.isPaused = true
+    local rightEndZone = Config.Window.width - Config.Ball.radius
+    local leftEndZone = 0
+
+    if Config.Ball.posX < leftEndZone or Config.Ball.posX > rightEndZone then
+        Ball.handleScore()
     end
+end
+
+function Ball.handleScore()
+    local rightEndZone = Config.Window.width - Config.Ball.radius
+    local leftEndZone = 0
+
+    if Config.Ball.posX < leftEndZone then
+        Config.IA.score = Config.IA.score + 1
+    elseif Config.Ball.posX > rightEndZone then
+        Config.Player.score = Config.Player.score + 1
+    end
+
+
+    Config.isPaused = true
+    Ball.defaultPos()
+    Paddle.defaultPos()
 end
 
 return Ball;

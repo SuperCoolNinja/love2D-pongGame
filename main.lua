@@ -21,6 +21,8 @@ end
 -- This is called once when the game start :
 function love.load()
     
+    love.window.setMode(Config.Window.width, Config.Window.height, {vsync = true})
+
     -- Game default settings : 
     love.graphics.setNewFont(Config.GameScreen.fontSize)
     love.window.setTitle(Config.Window.title)
@@ -53,7 +55,7 @@ end
 
 -- This is call every frame to render thing on screen : 
 function love.draw()
-
+    
     -- Score :
     Game.showUI()
 
